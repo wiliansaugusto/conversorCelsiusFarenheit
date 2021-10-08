@@ -24,7 +24,11 @@ public class ConversorService {
     @Autowired
     private  ConversorMapper conversorMapper ;
 
-
+/*
+    Metodo para calcular e salvar as conversões solicitadas, o calculo é realizado a partir da informação
+    do type.
+    As Variaveis type e valorInformado não podem ser nulas.
+ */
     @Transactional
     public ConversorDTO createConversor(ConversorDTO conversorDTO) throws NullPointerException {
         Conversor conversor = conversorMapper.toEntity(conversorDTO);
@@ -33,12 +37,18 @@ public class ConversorService {
         return conversorMapper.toDto(conversor);
     }
 
-
+/*
+    Realiza a busca de todas as conversões realizadas pelo sistema
+ */
     @Transactional(readOnly = true)
     public List<ConversorDTO> listAll() {
         return conversorMapper.toDto(conversorRepository.findAll());
 
     }
+    /*
+     Busca as conversões informando uma id como paramentro
+     */
+
     @Transactional(readOnly = true)
     public ConversorDTO findById(long id) {
         return conversorRepository.findById(id).map(conversorMapper::toDto).orElseThrow(NotFoundException::new);

@@ -5,6 +5,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/*
+Entidade que servirá de mapeamento para o banco de dados
+
+ */
 @Entity
 @Table(name = "tb_conversor")
 @Getter
